@@ -52,7 +52,7 @@ RSpec.describe "Books", type: :request do
  
   describe "PUT /update" do 
     it "returns successfully updated" do 
-      book = Book.create(name: "teste_book", price: 101)
+      book = create(:book)
       put "/books/#{book.id}", params: {  name: "New Name"  }
       book.reload
       expect(book.name).to eq("New Name")    
@@ -63,10 +63,10 @@ RSpec.describe "Books", type: :request do
 
   describe "PUT /update" do 
     it "returns error when book is updated" do 
-      book = Book.create(price:89658, name:"Avatar")
+      book = create(:book)
       put "/books/#{book.id}", params: { price: nil}
         book.reload
-       expect(book.price).to eq(89658)
+       expect(book.price).to eq(book.price)
       expect(response).to have_http_status(422)
     end
   end
