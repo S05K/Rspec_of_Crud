@@ -27,7 +27,6 @@ RSpec.describe "Books", type: :request do
  
   describe "GET /show" do 
     it "returns a data on id" do
-      byebug
     book=create(:book)
     get "/books/#{book.id}"
      expect(response).to be_successful
@@ -44,7 +43,6 @@ RSpec.describe "Books", type: :request do
 
   describe "DELETE /destroy" do 
     it "returns delete succesffuly" do 
-      byebug
       book = create(:book)
       delete "/books/#{book.id}"
       expect(response).to have_http_status(204)
@@ -58,7 +56,7 @@ RSpec.describe "Books", type: :request do
       put "/books/#{book.id}", params: {  name: "New Name"  }
       book.reload
       expect(book.name).to eq("New Name")    
-      expect(response).to have_http_status(200)
+      expect(response).to have_http_status(201)
     end
   end
   

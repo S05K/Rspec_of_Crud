@@ -29,14 +29,13 @@ end
 def update
   @book = Book.find_by(id: params[:id])
   if @book.update(all_params)
-    render json: @book 
+    render json: @book, status: 201
   else
     render json: { error: 'Book creation failed' }, status: :unprocessable_entity
   end
 end
 
 def destroy
-  byebug
   @book = Book.find_by(id: params[:id])
   if @book.destroy
     render json: "Book is deleted", status: 204
