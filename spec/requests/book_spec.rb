@@ -4,6 +4,7 @@ RSpec.describe "Books", type: :request do
   
   describe "GET /index" do
     it "returns a successful response" do
+      book=create(:book)
       get '/books'
       expect(response).to have_http_status(200)
     end
@@ -11,7 +12,8 @@ RSpec.describe "Books", type: :request do
 
   describe "POST /create" do
     it "assigns @book" do
-      post '/books', params:  { name: "test_book", price: 255 }
+      book=create(:book)
+      post '/books', params:  { name: book.name, price: book.price }
     expect(response).to have_http_status(201)
     end
   end
@@ -25,7 +27,8 @@ RSpec.describe "Books", type: :request do
  
   describe "GET /show" do 
     it "returns a data on id" do
-    book = Book.create(name: "teste_book", price:101)
+      byebug
+    book=create(:book)
     get "/books/#{book.id}"
      expect(response).to be_successful
     end
@@ -41,9 +44,10 @@ RSpec.describe "Books", type: :request do
 
   describe "DELETE /destroy" do 
     it "returns delete succesffuly" do 
-      book = Book.create(name: "teste_book", price:101)
+      byebug
+      book = create(:book)
       delete "/books/#{book.id}"
-      expect(response).to have_http_status(200)
+      expect(response).to have_http_status(204)
     end
   end
 

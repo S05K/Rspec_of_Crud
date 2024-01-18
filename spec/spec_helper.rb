@@ -12,6 +12,10 @@
 # the additional setup, and require it from the spec files that actually need
 # it.
 #
+# RSpec.configure do |config|
+#   config.include FactoryBot::Syntax::Methods
+# end
+
 # See https://rubydoc.info/gems/rspec-core/RSpec/Core/Configuration
 RSpec.configure do |config|
   # rspec-expectations config goes here. You can use an alternate
@@ -28,6 +32,8 @@ RSpec.configure do |config|
     expectations.include_chain_clauses_in_custom_matcher_descriptions = true
   end
 
+  
+  
   # rspec-mocks config goes here. You can use an alternate test double
   # library (such as bogus or mocha) by changing the `mock_with` option here.
   config.mock_with :rspec do |mocks|
@@ -91,4 +97,8 @@ RSpec.configure do |config|
   # as the one that triggered the failure.
   Kernel.srand config.seed
 =end
+
+# spec/rails_helper.rb or spec/spec_helper.rb
+
+
 end
