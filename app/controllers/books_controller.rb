@@ -1,14 +1,17 @@
 class BooksController < ApplicationController
  
   def index
+    byebug
     @books = Book.all
-    render json: @books
+    if @books
+    render json: @books, status: 200
+    end
   end
 
 def create
   @book = Book.new(all_params)
   if @book.save
-    render json: @book
+    render json: @book, status: :created
   else
     render json: { error: 'Book creation failed' }, status: :unprocessable_entity
   end
@@ -38,7 +41,7 @@ def destroy
   if @book.destroy
     render json: "Book is deleted"
   else
-    rendee json: "Not"
+    render json: { error: 'Book deletion failed' }, status: :unprocessable_entity
   end
 end
 
