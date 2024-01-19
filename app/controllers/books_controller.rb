@@ -25,6 +25,15 @@ def show
   end
 end
 
+  def show_user
+    @book = Book.find_by(id: params[:id])
+
+    if @book.present?
+      render json: @book.user
+      else
+        render json: { error: 'not found' }, status: :not_found
+      end
+  end
 
 def update
   @book = Book.find_by(id: params[:id])

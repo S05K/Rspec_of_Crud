@@ -77,6 +77,16 @@ RSpec.describe "Books", type: :request do
     end
   end
 
+  describe "GET /show_user" do 
+    it "returns book's user if book present" do 
+      user = create(:user)
+      book = create(:book, user_id: user.id)
+      get "/books/show_user/#{book.id}"
+      expect(response).to have_http_status(200)
+    end
+  end
+
+
 
 
 end
