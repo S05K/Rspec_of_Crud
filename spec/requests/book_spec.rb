@@ -4,7 +4,8 @@ RSpec.describe "Books", type: :request do
   
   describe "GET /index" do
     it "returns a successful response" do
-      book=create(:book)
+      user=create(:user)
+      book=create(:book, user_id: user.id)
       get '/books'
       expect(response).to have_http_status(200)
     end
@@ -12,8 +13,9 @@ RSpec.describe "Books", type: :request do
 
   describe "POST /create" do
     it "assigns @book" do
-      book=create(:book)
-      post '/books', params:  { name: book.name, price: book.price }
+      user=create(:user)
+      book=create(:book,  user_id: user.id)
+      post '/books', params:  { name: book.name, price: book.price, user_id: user.id }
     expect(response).to have_http_status(201)
     end
   end
@@ -27,7 +29,8 @@ RSpec.describe "Books", type: :request do
  
   describe "GET /show" do 
     it "returns a data on id" do
-    book=create(:book)
+    user=create(:user)
+    book=create(:book, user_id: user.id)
     get "/books/#{book.id}"
      expect(response).to be_successful
     end
@@ -43,7 +46,8 @@ RSpec.describe "Books", type: :request do
 
   describe "DELETE /destroy" do 
     it "returns delete succesffuly" do 
-      book = create(:book)
+      user=create(:user)
+      book = create(:book, user_id: user.id)
       delete "/books/#{book.id}"
       expect(response).to have_http_status(204)
     end
@@ -52,7 +56,8 @@ RSpec.describe "Books", type: :request do
  
   describe "PUT /update" do 
     it "returns successfully updated" do 
-      book = create(:book)
+      user=create(:user)
+      book = create(:book, user_id: user.id)
       put "/books/#{book.id}", params: {  name: "New Name"  }
       book.reload
       expect(book.name).to eq("New Name")    
@@ -63,7 +68,8 @@ RSpec.describe "Books", type: :request do
 
   describe "PUT /update" do 
     it "returns error when book is updated" do 
-      book = create(:book)
+      user = create(:user)
+      book = create(:book, user_id: user.id)
       put "/books/#{book.id}", params: { price: nil}
         book.reload
        expect(book.price).to eq(book.price)

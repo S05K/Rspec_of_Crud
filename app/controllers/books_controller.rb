@@ -47,7 +47,7 @@ end
 
 private
 def all_params
-params.permit(:name, :price)
+params.permit(:name, :price, :user_id)
 end
 
 # def only_params
