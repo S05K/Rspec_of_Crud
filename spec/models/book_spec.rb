@@ -24,4 +24,10 @@ RSpec.describe Book, type: :model do
     end
  end
 
+        # Rspec for associations...
+
+    it 'should belongs to user' do 
+        expect(book.user).to eq(user)
+    end
+
 end
